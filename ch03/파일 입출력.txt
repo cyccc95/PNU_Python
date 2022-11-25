@@ -1,0 +1,67 @@
+###os모듈을 import
+import os
+
+###현재 위치 확인하기
+os.getcwd()
+
+###폴더 이동하기
+os.chdir('주소')
+
+###\(역슬래시) 안 붙이고 폴더 이동하기
+'주소' 앞에 r을 붙인다
+
+###폴더 안의 파일 확인하기
+os.listdir()
+
+###파일 열기
+파일 객체 = open('파일 이름', 파일 열기 모드)
+f = open('a.txt', 'w')
+
+###파일 닫기
+f.close()
+
+###파일 열기 모드
+'w'	파일에 내용을 새로 쓸 때 사용
+'r'	파일 내용을 읽을 때 사용
+'a'	파일에 내용을 추가할 때 사용
+
+###파일 쓰기 모드
+f = open('a.txt', 'w')
+f.write('나는 오늘 학교에 갔다')
+f.close()
+
+###파일 읽기 모드
+f = open('a.txt', 'r')
+f.read()
+  '나는 오늘 학교에 갔다.'
+f.read()
+  ''  	#커서 위치가 파일 가장 끝에 있어 더 읽을 내용이 없습니다 
+
+f.seek(0)	#파일 가장 처음으로 커서를 이동하라는 의미
+  0
+f.read()
+  '나는 오늘 학교에 갔다'	#다시 내용을 읽을 수 있다
+f.close()
+
+###파일 내용 추가 모드
+f = open('a.txt', 'a')
+f.write('학교에 가지 않을 날이 올까?')
+f.close()
+f = open('a.txt', 'r')
+f.read()
+  '나는 오늘 학교에 갔다. 학교에 가지 않을 날이 올까?'
+f.close()
+
+###with문	#객체를 만들지 않고 파일 입출력
+with open(파일 이름, 파일 열기 모드) as f:
+  f에 수행할 명령
+with open('test.txt', 'w') as f:
+  f.write('나는 오늘 학교에 갔습니다.')
+
+###한글 파일 오류 해결하기 #codec 문제
+f = open('한글파일.txt', 'r', encoding = 'utf8')
+import codecs
+f = codecs.open('한글파일.txt', 'r', 'utf-8')
+f.read()[:10]
+
+
